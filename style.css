@@ -24,6 +24,11 @@ input[type="number"] {
   appearance: textfield;
 }
 
+input[type="text"] {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
 input {
   font-family: "JetBrains Mono", monospace;
   font-optical-sizing: auto;
