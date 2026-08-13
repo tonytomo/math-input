@@ -12,188 +12,115 @@
         rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-            appearance: textfield;
-        }
-
-        input {
-            font-family: "JetBrains Mono", monospace;
-            font-optical-sizing: auto;
-        }
-
-        .square-root {
-            transform: skewX(-20deg);
-            border-left: 2px solid white;
-            border-top: 2px solid white;
-        }
-
-        .square-root>* {
-            transform: skewX(20deg);
-        }
-
-        .parentheses {
-            border-left: 2px solid white;
-            border-right: 2px solid white;
-            border-radius: 0.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <main class="h-screen flex flex-col justify-center bg-zinc-900 text-white">
-        <div id="editor"
-            class="bg-zinc-800 outline-none focus:ring-2 ring-zinc-600 min-h-16 p-16 font-sans text-xl flex items-center overflow-x-auto">
-            <input type="number"
-                class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="0" />
+        <div id="editor" class="editor">
+            <!-- Number -->
+            <input type="number" class="auto-resize" value="0" />
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="+" />
+            <input type="text" maxlength="1" value="+" />
 
             <!-- Fraction -->
-            <div class="flex flex-col mx-2 items-center gap-2">
-                <input type="number"
-                    class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                    style="width: 2.5ch;height: 2.5ch;" value="0" />
-                <div class="border-b-2 border-white self-stretch"></div>
-                <input type="number"
-                    class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                    style="width: 2.5ch;height: 2.5ch;" value="0" />
+            <div class="fraction">
+                <input type="number" class="auto-resize" value="0" />
+                <div class="bar"></div>
+                <input type="number" class="auto-resize" value="0" />
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="+" />
+            <input type="text" maxlength="1" value="+" />
 
             <!-- Nested Fraction -->
-            <div class="flex flex-col mx-2 items-center gap-2">
-                <div class="flex flex-col mx-2 items-center gap-2">
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
-                    <div class="border-b-2 border-white self-stretch"></div>
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
+            <div class="fraction">
+                <div class="fraction">
+                    <input type="number" class="auto-resize" value="0" />
+                    <div class="bar"></div>
+                    <input type="number" class="auto-resize" value="0" />
                 </div>
-                <div class="border-b-2 border-white self-stretch"></div>
-                <div class="flex flex-col mx-2 items-center gap-2">
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
-                    <div class="border-b-2 border-white self-stretch"></div>
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
+                <div class="bar"></div>
+                <div class="fraction">
+                    <input type="number" class="auto-resize" value="0" />
+                    <div class="bar"></div>
+                    <input type="number" class="auto-resize" value="0" />
                 </div>
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="+" />
+            <input type="text" maxlength="1" value="+" />
 
-            <!-- Square Root -->
-            <div class="relative px-2 pt-2 square-root ml-4 mr-2">
-                <input type="number"
-                    class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                    style="width: 2.5ch;height: 2.5ch;" value="0" />
-                <input type="number"
-                    class="auto-resize text-xs focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none absolute top-0 right-[calc(100%_+_1ch)]"
-                    style="width: 1.5ch;height: 1.5ch;" value="2" />
+            <!-- Root -->
+            <div class="root">
+                <input type="number" class="index auto-resize" value="2" />
+                <div class="radical">
+                    <input type="number" class="auto-resize" value="0" />
+                </div>
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="×" />
+            <input type="text" maxlength="1" value="×" />
 
             <!-- Exponent -->
-            <div class="relative">
-                <input type="number"
-                    class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                    style="width: 2.5ch;height: 2.5ch;" value="0" />
-                <input type="number"
-                    class="auto-resize text-xs focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none absolute top-0 left-[calc(100%_-_1ch)]"
-                    style="width: 1.5ch;height: 1.5ch;" value="2" />
+            <div class="exponent">
+                <input type="number" class="auto-resize" value="0" />
+                <input type="number" class="power auto-resize" value="2" />
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="×" />
+            <input type="text" maxlength="1" value="×" />
 
             <!-- Parentheses -->
-            <div class="relative p-2 parentheses mx-2 flex ">
-                <input type="number"
-                    class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                    style="width: 2.5ch;height: 2.5ch;" value="0" />
+            <div class="parentheses">
+                <input type="number" class="auto-resize" value="0" />
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="×" />
+            <input type="text" maxlength="1" value="×" />
+
+            <!-- Absolute / Vertical Bar -->
+            <div class="vertical-bar">
+                <input type="number" class="auto-resize" value="0" />
+                <input type="text" maxlength="1" value="×" />
+                <input type="number" class="auto-resize" value="0" />
+            </div>
+
+            <input type="text" maxlength="1" value="×" />
 
             <!-- Fractions inside Parentheses -->
-            <div class="relative p-2 parentheses mx-2">
-                <div class="flex flex-col mx-2 items-center gap-2">
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
-                    <div class="border-b-2 border-white self-stretch"></div>
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
+            <div class="parentheses">
+                <div class="fraction">
+                    <input type="number" class="auto-resize" value="0" />
+                    <div class="bar"></div>
+                    <input type="number" class="auto-resize" value="0" />
                 </div>
             </div>
 
-            <input type="text"
-                class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                style="width: 2.5ch;height: 2.5ch;" value="×" />
+            <input type="text" maxlength="1" value="×" />
 
             <!-- Complex Fraction with Square Root and Exponent -->
-            <div class="flex flex-col mx-2 items-center gap-2">
+            <div class="fraction">
                 <!-- Numerator -->
-                <div class="relative px-2 pt-2 square-root ml-4 mr-2">
-                    <input type="number"
-                        class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="0" />
-                    <input type="number"
-                        class="auto-resize text-xs focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none absolute top-0 right-[calc(100%_+_1ch)]"
-                        style="width: 1.5ch;height: 1.5ch;" value="2" />
+                <div class="root">
+                    <input type="number" class="index auto-resize" value="2" />
+                    <div class="radical">
+                        <input type="number" class="auto-resize" value="0" />
+                    </div>
                 </div>
 
-                <div class="border-b-2 border-white self-stretch"></div>
+                <div class="bar"></div>
 
                 <!-- Denominator -->
-                <div class="relative p-2 parentheses mx-2 flex ">
-                    <div class="relative px-2 pt-2 square-root ml-4 mr-2">
-                        <input type="number"
-                            class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                            style="width: 2.5ch;height: 2.5ch;" value="0" />
-                        <input type="number"
-                            class="auto-resize text-xs focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none absolute top-0 right-[calc(100%_+_1ch)]"
-                            style="width: 1.5ch;height: 1.5ch;" value="2" />
+                <div class="parentheses">
+                    <div class="root">
+                        <input type="number" class="index auto-resize" value="2" />
+                        <div class="radical">
+                            <input type="number" class="auto-resize" value="0" />
+                        </div>
                     </div>
 
-                    <input type="text"
-                        class="text-center focus:border border-zinc-500 border-dotted text-inherit bg-transparent outline-none"
-                        style="width: 2.5ch;height: 2.5ch;" value="×" />
+                    <input type="text" maxlength="1" value="×" />
 
                     <!-- Exponent -->
-                    <div class="relative">
-                        <input type="number"
-                            class="auto-resize focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none"
-                            style="width: 2.5ch;height: 2.5ch;" value="0" />
-                        <input type="number"
-                            class="auto-resize text-xs focus:border border-zinc-500 border-dotted text-center text-inherit bg-transparent outline-none absolute top-0 left-[calc(100%_-_1ch)]"
-                            style="width: 1.5ch;height: 1.5ch;" value="2" />
+                    <div class="exponent">
+                        <input type="number" class="auto-resize" value="0" />
+                        <input type="number" class="power auto-resize" value="2" />
                     </div>
                 </div>
             </div>
