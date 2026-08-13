@@ -1,0 +1,30 @@
+{
+  "name": "math-input",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Headless Math Input Component",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "npx serve .",
+    "prepublishOnly": "npm run build",
+    "example": "node scripts/example.js",
+    "watch": "node scripts/watch.js"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^7.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonytomo/math-input.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tonytomo/math-input/issues"
+  },
+  "homepage": "https://github.com/tonytomo/math-input#readme"
+}
