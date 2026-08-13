@@ -30,7 +30,7 @@
                 <input type="number" class="auto-resize" value="0" />
             </div>
 
-            <input type="text" maxlength="1" value="+" />
+            <input type="text" maxlength="1" value="-" />
 
             <!-- Nested Fraction -->
             <div class="fraction">
@@ -57,31 +57,43 @@
                 </div>
             </div>
 
-            <input type="text" maxlength="1" value="×" />
+            <input type="text" maxlength="1" value="·" />
 
             <!-- Exponent -->
             <div class="exponent">
                 <input type="number" class="auto-resize" value="0" />
-                <input type="number" class="power auto-resize" value="2" />
+                <div class="power">
+                    <input type="number" class="auto-resize" value="2" />
+                </div>
             </div>
 
-            <input type="text" maxlength="1" value="×" />
+            <input type="text" maxlength="1" value="-" />
+
+            <!-- Exponent Operation -->
+            <div class="exponent">
+                <input type="number" class="auto-resize" value="0" />
+                <div class="power">
+                    <input type="number" class="auto-resize" value="0" />
+                </div>
+            </div>
+
+            <input type="text" maxlength="1" value="-" />
 
             <!-- Parentheses -->
             <div class="parentheses">
                 <input type="number" class="auto-resize" value="0" />
             </div>
 
-            <input type="text" maxlength="1" value="×" />
+            <input type="text" maxlength="1" value="·" />
 
             <!-- Absolute / Vertical Bar -->
             <div class="vertical-bar">
                 <input type="number" class="auto-resize" value="0" />
-                <input type="text" maxlength="1" value="×" />
+                <input type="text" maxlength="1" value="+" />
                 <input type="number" class="auto-resize" value="0" />
             </div>
 
-            <input type="text" maxlength="1" value="×" />
+            <input type="text" maxlength="1" value="·" />
 
             <!-- Fractions inside Parentheses -->
             <div class="parentheses">
@@ -92,7 +104,7 @@
                 </div>
             </div>
 
-            <input type="text" maxlength="1" value="×" />
+            <input type="text" maxlength="1" value="-" />
 
             <!-- Complex Fraction with Square Root and Exponent -->
             <div class="fraction">
@@ -115,12 +127,14 @@
                         </div>
                     </div>
 
-                    <input type="text" maxlength="1" value="×" />
+                    <input type="text" maxlength="1" value="+" />
 
                     <!-- Exponent -->
                     <div class="exponent">
                         <input type="number" class="auto-resize" value="0" />
-                        <input type="number" class="power auto-resize" value="2" />
+                        <div class="power">
+                            <input type="number" class="auto-resize" value="2" />
+                        </div>
                     </div>
                 </div>
             </div>
