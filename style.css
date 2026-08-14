@@ -175,3 +175,8 @@ input:focus {
 .trigonometric > .argument > p {
   padding-bottom: 0.25rem;
 }
+
+.variable {
+  display: flex;
+  align-items: center;
+}

@@ -5,4 +5,5 @@
 [x] add sin, cos, tan
 [ ] add variable support
 [ ] add graph
+[ ] add summation
 [ ] add matrix operations
