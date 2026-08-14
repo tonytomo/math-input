@@ -123,6 +123,20 @@ function createNumberInput(value = '') {
                 newInput.focus();
                 break;
             }
+            case '*': {
+                e.preventDefault();
+                const newOperator = createOperatorInput('·');
+                const newInput = createNumberInput();
+
+                editor.appendChild(newOperator);
+                editor.appendChild(newInput);
+
+                resizeInput(newOperator);
+                resizeInput(newInput);
+
+                newInput.focus();
+                break;
+            }
             default: break;
         }
     });
