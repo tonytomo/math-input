@@ -140,7 +140,10 @@ function createNumberInput(value = '') {
                 fraction.appendChild(bar);
                 fraction.appendChild(denominator);
 
+                const newOperator = createOperatorInput();
+
                 input.after(fraction);
+                fraction.after(newOperator);
                 input.remove();
 
                 resizeInput(numerator);
