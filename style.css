@@ -137,3 +137,20 @@ input:focus {
   display: flex;
   align-items: center;
 }
+
+.logarithm {
+  display: flex;
+  align-items: start;
+}
+
+.logarithm > .base {
+  width: 2ch;
+  height: 2ch;
+
+  font-size: 0.75rem;
+}
+
+.logarithm > .argument {
+  display: flex;
+  align-items: center;
+}
