@@ -11,7 +11,8 @@
 [x] sin, cos, tan
 [x] variable support
 [x] summation
+[ ] input navigation
+[ ] keyboard shortcuts
 [ ] graph
 [ ] matrix
-[ ] keyboard shortcuts
 [ ] calculation

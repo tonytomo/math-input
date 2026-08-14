@@ -88,6 +88,7 @@ function createNumberInput(value = '') {
             case 'Backspace':
                 if (editor.children.length <= 1) break;
                 if (input.value.length > 0) break;
+                e.preventDefault();
                 removeInput(input);
                 break;
             case '+':
@@ -154,9 +155,22 @@ function createOperatorInput(value) {
                     nextInput.focus();
                 }
                 break;
+            case ' ':
+                e.preventDefault();
+                const lastInput = editor.lastElementChild;
+                if (input !== lastInput) return;
+
+                const newInput = createNumberInput();
+
+                editor.appendChild(newInput);
+                resizeInput(newInput);
+
+                newInput.focus();
+                break;
             case 'Backspace':
                 if (editor.children.length <= 1) break;
                 if (input.value.length > 0) break;
+                e.preventDefault();
                 removeInput(input);
                 break;
             default: break;
