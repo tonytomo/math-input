@@ -78,20 +78,38 @@ function createNumberInput(value = '') {
 
     input.addEventListener('keydown', (e) => {
         const editor = document.getElementById('editor');
+        const nextSibling = input.nextElementSibling;
+        const previousSibling = input.previousElementSibling;
         switch (e.key) {
             case 'ArrowLeft': {
-                const previousInput = input.previousElementSibling;
-                if (previousInput && input.selectionStart === 0) {
+                if (input.selectionStart === 0) {
                     e.preventDefault();
-                    previousInput.focus();
+                    if (previousSibling) previousSibling.focus();
+                    if (previousSibling && previousSibling.classList.contains('fraction')) {
+                        previousSibling.lastElementChild.focus();
+                    }
+                    if (input.classList.contains('numerator') && input.parentElement.previousElementSibling) {
+                        input.parentElement.previousElementSibling.focus();
+                    }
+                    if (input.classList.contains('denominator')) {
+                        input.parentElement.firstElementChild.focus();
+                    }
                 }
                 break;
             }
             case 'ArrowRight': {
-                const nextInput = input.nextElementSibling;
-                if (nextInput && input.selectionStart === input.value.length) {
+                if (input.selectionStart === input.value.length) {
                     e.preventDefault();
-                    nextInput.focus();
+                    if (nextSibling) nextSibling.focus();
+                    if (nextSibling && nextSibling.classList.contains('fraction')) {
+                        nextSibling.firstElementChild.focus();
+                    }
+                    if (input.classList.contains('numerator')) {
+                        input.parentElement.lastElementChild.focus();
+                    }
+                    if (input.classList.contains('denominator') && input.parentElement.nextElementSibling) {
+                        input.parentElement.nextElementSibling.focus();
+                    }
                 }
                 break;
             }
@@ -107,8 +125,8 @@ function createNumberInput(value = '') {
                 const newOperator = createOperatorInput('+');
                 const newInput = createNumberInput();
 
-                editor.appendChild(newOperator);
-                editor.appendChild(newInput);
+                input.after(newOperator);
+                newOperator.after(newInput);
 
                 resizeInput(newOperator);
                 resizeInput(newInput);
@@ -123,8 +141,8 @@ function createNumberInput(value = '') {
                 const newOperator = createOperatorInput('-');
                 const newInput = createNumberInput();
 
-                editor.appendChild(newOperator);
-                editor.appendChild(newInput);
+                input.after(newOperator);
+                newOperator.after(newInput);
 
                 resizeInput(newOperator);
                 resizeInput(newInput);
@@ -137,13 +155,46 @@ function createNumberInput(value = '') {
                 const newOperator = createOperatorInput('·');
                 const newInput = createNumberInput();
 
-                editor.appendChild(newOperator);
-                editor.appendChild(newInput);
+                input.after(newOperator);
+                newOperator.after(newInput);
 
                 resizeInput(newOperator);
                 resizeInput(newInput);
 
                 newInput.focus();
+                break;
+            }
+            case '/': {
+                e.preventDefault();
+                const fraction = document.createElement('div');
+                const bar = document.createElement('div');
+                const numerator = createNumberInput(input.value);
+                const denominator = createNumberInput();
+
+                fraction.classList.add('fraction');
+                numerator.classList.add('numerator');
+                denominator.classList.add('denominator');
+
+                fraction.style.display = 'flex';
+                fraction.style.flexDirection = 'column';
+                fraction.style.marginInline = '0.5rem';
+                fraction.style.alignItems = 'center';
+                fraction.style.gap = '0.5rem';
+
+                bar.style.borderBottom = '2px solid white';
+                bar.style.alignSelf = 'stretch';
+
+                fraction.appendChild(numerator);
+                fraction.appendChild(bar);
+                fraction.appendChild(denominator);
+
+                input.after(fraction);
+                input.remove();
+
+                resizeInput(numerator);
+                resizeInput(denominator);
+
+                denominator.focus();
                 break;
             }
             default: break;
@@ -153,7 +204,7 @@ function createNumberInput(value = '') {
     return input;
 }
 
-function createOperatorInput(value) {
+function createOperatorInput(value = '') {
     const input = document.createElement('input');
     input.type = 'text';
     input.maxLength = 1;
@@ -184,19 +235,37 @@ function createOperatorInput(value) {
 
     input.addEventListener('keydown', (e) => {
         const editor = document.getElementById('editor');
+        const nextSibling = input.nextElementSibling;
+        const previousSibling = input.previousElementSibling;
         switch (e.key) {
             case 'ArrowLeft':
-                const previousInput = input.previousElementSibling;
-                if (previousInput && input.selectionStart === 0) {
+                if (input.selectionStart === 0) {
                     e.preventDefault();
-                    previousInput.focus();
+                    if (previousSibling) previousSibling.focus();
+                    if (previousSibling && previousSibling.classList.contains('fraction')) {
+                        previousSibling.lastElementChild.focus();
+                    }
+                    if (input.classList.contains('numerator')) {
+                        input.parentElement.previousElementSibling.focus();
+                    }
+                    if (input.classList.contains('denominator')) {
+                        input.parentElement.firstElementChild.focus();
+                    }
                 }
                 break;
             case 'ArrowRight':
-                const nextInput = input.nextElementSibling;
-                if (nextInput && input.selectionStart === input.value.length) {
+                if (input.selectionStart === input.value.length) {
                     e.preventDefault();
-                    nextInput.focus();
+                    if (nextSibling) nextSibling.focus();
+                    if (nextSibling && nextSibling.classList.contains('fraction')) {
+                        nextSibling.firstElementChild.focus();
+                    }
+                    if (input.classList.contains('numerator')) {
+                        input.parentElement.lastElementChild.focus();
+                    }
+                    if (input.classList.contains('denominator')) {
+                        input.parentElement.nextElementSibling.focus();
+                    }
                 }
                 break;
             case ' ':
