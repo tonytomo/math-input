@@ -32,6 +32,15 @@ function onlyAcceptNumbers(input) {
     resizeInput(input);
 }
 
+function onlyAcceptOperators(input) {
+    let value = input.value;
+    value = value.replace(/[^+\-*=]/g, '');
+    value = value.replace(/\*/g, '·');
+
+    input.value = value;
+    resizeInput(input);
+}
+
 function removeInput(input) {
     const previousInput = input.previousElementSibling;
     input.remove();
@@ -170,6 +179,8 @@ function createOperatorInput(value) {
     input.addEventListener('blur', (e) => {
         e.target.style.borderBottomWidth = '0px';
     });
+
+    input.addEventListener('input', (e) => onlyAcceptOperators(e.target));
 
     input.addEventListener('keydown', (e) => {
         const editor = document.getElementById('editor');
