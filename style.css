@@ -45,7 +45,7 @@ input {
   outline: none;
 
   height: 2.5ch;
-  width: 2.5ch;
+  width: 2ch;
 }
 
 input:focus {
@@ -118,8 +118,7 @@ input:focus {
   border-right: 2px solid white;
   border-radius: 4rem;
 
-  margin-inline: 1rem;
-  padding-inline: 0.5rem;
+  padding-inline: 0.25rem;
   padding-block: 0.5rem;
 
   display: flex;
@@ -130,10 +129,14 @@ input:focus {
   border-left: 2px solid white;
   border-right: 2px solid white;
 
-  margin-inline: 1rem;
-  padding-inline: 0.5rem;
+  padding-inline: 0.25rem;
   padding-block: 0.5rem;
 
+  display: flex;
+  align-items: center;
+}
+
+.factorial {
   display: flex;
   align-items: center;
 }
@@ -153,4 +156,22 @@ input:focus {
 .logarithm > .argument {
   display: flex;
   align-items: center;
+}
+
+.logarithm > .argument > p {
+  padding-bottom: 0.25rem;
+}
+
+.trigonometric {
+  display: flex;
+  align-items: center;
+}
+
+.trigonometric > .argument {
+  display: flex;
+  align-items: center;
+}
+
+.trigonometric > .argument > p {
+  padding-bottom: 0.25rem;
 }

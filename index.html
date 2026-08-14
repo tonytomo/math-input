@@ -19,41 +19,24 @@
     <main class="h-screen flex flex-col justify-center bg-zinc-900 text-white">
         <div id="editor" class="editor">
             <!-- Number -->
-            <input type="number" class="auto-resize" value="0" />
+            <input type="number" class="auto-resize" value="20" />
 
             <input type="text" maxlength="1" value="+" />
 
             <!-- Fraction -->
             <div class="fraction">
-                <input type="number" class="auto-resize" value="0" />
+                <input type="number" class="auto-resize" value="1" />
                 <div class="bar"></div>
-                <input type="number" class="auto-resize" value="0" />
-            </div>
-
-            <input type="text" maxlength="1" value="-" />
-
-            <!-- Nested Fraction -->
-            <div class="fraction">
-                <div class="fraction">
-                    <input type="number" class="auto-resize" value="0" />
-                    <div class="bar"></div>
-                    <input type="number" class="auto-resize" value="0" />
-                </div>
-                <div class="bar"></div>
-                <div class="fraction">
-                    <input type="number" class="auto-resize" value="0" />
-                    <div class="bar"></div>
-                    <input type="number" class="auto-resize" value="0" />
-                </div>
+                <input type="number" class="auto-resize" value="2" />
             </div>
 
             <input type="text" maxlength="1" value="+" />
 
             <!-- Root -->
             <div class="root">
-                <input type="number" class="index auto-resize" value="2" />
+                <input type="number" class="index auto-resize" value="3" />
                 <div class="radical">
-                    <input type="number" class="auto-resize" value="0" />
+                    <input type="number" class="auto-resize" value="64" />
                 </div>
             </div>
 
@@ -61,9 +44,9 @@
 
             <!-- Exponent -->
             <div class="exponent">
-                <input type="number" class="auto-resize" value="0" />
+                <input type="number" class="auto-resize" value="4" />
                 <div class="power">
-                    <input type="number" class="auto-resize" value="2" />
+                    <input type="number" class="auto-resize" value="3" />
                 </div>
             </div>
 
@@ -71,62 +54,24 @@
 
             <!-- Parentheses -->
             <div class="parentheses">
-                <input type="number" class="auto-resize" value="0" />
+                <input type="number" class="auto-resize" value="-5" />
             </div>
 
             <input type="text" maxlength="1" value="·" />
 
             <!-- Absolute / Vertical Bar -->
             <div class="vertical-bar">
-                <input type="number" class="auto-resize" value="0" />
+                <input type="number" class="auto-resize" value="-2" />
                 <input type="text" maxlength="1" value="+" />
-                <input type="number" class="auto-resize" value="0" />
-            </div>
-
-            <input type="text" maxlength="1" value="·" />
-
-            <!-- Fractions inside Parentheses -->
-            <div class="parentheses">
-                <div class="fraction">
-                    <input type="number" class="auto-resize" value="0" />
-                    <div class="bar"></div>
-                    <input type="number" class="auto-resize" value="0" />
-                </div>
+                <input type="number" class="auto-resize" value="-8" />
             </div>
 
             <input type="text" maxlength="1" value="-" />
 
-            <!-- Complex Fraction with Square Root and Exponent -->
-            <div class="fraction">
-                <!-- Numerator -->
-                <div class="root">
-                    <input type="number" class="index auto-resize" value="2" />
-                    <div class="radical">
-                        <input type="number" class="auto-resize" value="0" />
-                    </div>
-                </div>
-
-                <div class="bar"></div>
-
-                <!-- Denominator -->
-                <div class="parentheses">
-                    <div class="root">
-                        <input type="number" class="index auto-resize" value="2" />
-                        <div class="radical">
-                            <input type="number" class="auto-resize" value="0" />
-                        </div>
-                    </div>
-
-                    <input type="text" maxlength="1" value="+" />
-
-                    <!-- Exponent -->
-                    <div class="exponent">
-                        <input type="number" class="auto-resize" value="0" />
-                        <div class="power">
-                            <input type="number" class="auto-resize" value="2" />
-                        </div>
-                    </div>
-                </div>
+            <!-- Factorial -->
+            <div class="factorial">
+                <input type="number" class="auto-resize" value="5" />
+                <p>!</p>
             </div>
 
             <input type="text" maxlength="1" value="+" />
@@ -136,7 +81,48 @@
                 <input type="number" class="base auto-resize" value="10" />
                 <p>log</p>
                 <div class="argument">
-                    <input type="number" class="auto-resize" value="0" />
+                    <p>(</p>
+                    <input type="number" class="auto-resize" value="100" />
+                    <p>)</p>
+                </div>
+            </div>
+
+            <input type="text" maxlength="1" value="-" />
+
+            <!-- Trigonometric Sine -->
+            <div class="trigonometric">
+                <p>sin</p>
+                <div class="argument">
+                    <p>(</p>
+                    <input type="number" class="auto-resize" value="45" />
+                    <input type="text" class="angle auto-resize" value="°" />
+                    <p>)</p>
+                </div>
+            </div>
+
+            <input type="text" maxlength="1" value="+" />
+
+            <!-- Trigonometric Cosine -->
+            <div class="trigonometric">
+                <p>cos</p>
+                <div class="argument">
+                    <p>(</p>
+                    <input type="number" class="auto-resize" value="60" />
+                    <input type="text" class="angle auto-resize" value="°" />
+                    <p>)</p>
+                </div>
+            </div>
+
+            <input type="text" maxlength="1" value="+" />
+
+            <!-- Trigonometric Tangent -->
+            <div class="trigonometric">
+                <p>tan</p>
+                <div class="argument">
+                    <p>(</p>
+                    <input type="number" class="auto-resize" value="30" />
+                    <input type="text" class="angle auto-resize" value="rad" />
+                    <p>)</p>
                 </div>
             </div>
         </div>
