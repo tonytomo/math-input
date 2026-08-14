@@ -69,29 +69,31 @@ function createNumberInput(value = '') {
 
     input.addEventListener('keydown', (e) => {
         const editor = document.getElementById('editor');
-        console.log(`len: ${input.value.length}, s: ${input.selectionStart}`);
         switch (e.key) {
-            case 'ArrowLeft':
+            case 'ArrowLeft': {
                 const previousInput = input.previousElementSibling;
                 if (previousInput && input.selectionStart === 0) {
                     e.preventDefault();
                     previousInput.focus();
                 }
                 break;
-            case 'ArrowRight':
+            }
+            case 'ArrowRight': {
                 const nextInput = input.nextElementSibling;
                 if (nextInput && input.selectionStart === input.value.length) {
                     e.preventDefault();
                     nextInput.focus();
                 }
                 break;
-            case 'Backspace':
+            }
+            case 'Backspace': {
                 if (editor.children.length <= 1) break;
                 if (input.value.length > 0) break;
                 e.preventDefault();
                 removeInput(input);
                 break;
-            case '+':
+            }
+            case '+': {
                 e.preventDefault();
                 const newOperator = createOperatorInput('+');
                 const newInput = createNumberInput();
@@ -104,6 +106,23 @@ function createNumberInput(value = '') {
 
                 newInput.focus();
                 break;
+            }
+            case '-': {
+                if (input.value.length === 0 || input.selectionStart === 0) break;
+
+                e.preventDefault();
+                const newOperator = createOperatorInput('-');
+                const newInput = createNumberInput();
+
+                editor.appendChild(newOperator);
+                editor.appendChild(newInput);
+
+                resizeInput(newOperator);
+                resizeInput(newInput);
+
+                newInput.focus();
+                break;
+            }
             default: break;
         }
     });
