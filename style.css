@@ -180,3 +180,37 @@ input:focus {
   display: flex;
   align-items: center;
 }
+
+.summation {
+  display: flex;
+  align-items: center;
+}
+
+.summation > .symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summation > .symbol > p {
+  font-size: 2.5rem;
+  font-weight: 100;
+  line-height: 0.75;
+  padding-bottom: 0.75rem;
+
+  z-index: 0;
+}
+
+.summation > .symbol > .upper-bound,
+.summation > .symbol > .lower-bound {
+  display: flex;
+  align-items: center;
+
+  font-size: 0.75rem;
+  z-index: 1;
+}
+
+.summation > .argument {
+  display: flex;
+  align-items: center;
+}
